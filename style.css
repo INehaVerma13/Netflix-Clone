@@ -1,0 +1,1178 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --netflix-red: #E50914;
+  --netflix-red-hover: #C11119;
+  --netflix-black: #000000;
+  --netflix-white: #FFFFFF;
+  --netflix-gray-text: #B3B3B3;
+  --netflix-card-bg: #2D2D2D;
+  --netflix-card-hover: #414141;
+  --netflix-divider: #232323;
+  --font-main: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --transition-speed: 0.25s;
+}
+
+/* ==========================================
+   Resets and General Setup
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--netflix-black);
+  color: var(--netflix-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+/* ==========================================
+   Header and Navbar
+   ========================================== */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3.5rem;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.logo svg {
+  fill: var(--netflix-red);
+  width: 148px;
+  height: auto;
+  display: block;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Language selector */
+.lang-selector-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lang-selector-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>') no-repeat center center / contain;
+  pointer-events: none;
+}
+
+.lang-selector {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  color: var(--netflix-white);
+  padding: 0.35rem 1.5rem 0.35rem 2.2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  transition: border-color var(--transition-speed);
+}
+
+.lang-selector:focus {
+  border-color: var(--netflix-white);
+  outline: none;
+}
+
+/* Sign In Button */
+.btn-signin {
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color var(--transition-speed);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-signin:hover {
+  background-color: var(--netflix-red-hover);
+}
+
+/* ==========================================
+   Hero / Banner
+   ========================================== */
+.hero {
+  position: relative;
+  min-height: 720px;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.95) 100%),
+              url('assets/hero-bg.jpg') no-repeat center center / cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.hero-content h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.cta-form-label {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+/* CTA Form (Dual Inputs) */
+.cta-form {
+  display: flex;
+  width: 100%;
+  max-width: 680px;
+  gap: 0.5rem;
+}
+
+.input-group {
+  position: relative;
+  flex: 1;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  height: 56px;
+  background-color: rgba(15, 15, 15, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  color: var(--netflix-white);
+  padding: 24px 16px 8px; /* Top padding accommodates floating label */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.input-group input:focus,
+.input-group input:not(:placeholder-shown) {
+  border-color: var(--netflix-white);
+  box-shadow: 0 0 0 1px var(--netflix-white);
+}
+
+.input-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--netflix-gray-text);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: top var(--transition-speed) ease, font-size var(--transition-speed) ease;
+  pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: 18px;
+  font-size: 0.75rem;
+}
+
+/* Input validation error state */
+.input-group.error input {
+  border-color: #eb3941;
+  box-shadow: 0 0 0 1px #eb3941;
+}
+
+.input-group.error label {
+  color: #eb3941;
+}
+
+.error-message {
+  color: #eb3941;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  display: none;
+}
+
+.input-group.error .error-message {
+  display: block;
+}
+
+/* CTA Button */
+.btn-cta {
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  border: none;
+  height: 56px;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color var(--transition-speed);
+  white-space: nowrap;
+}
+
+.btn-cta:hover {
+  background-color: var(--netflix-red-hover);
+}
+
+.btn-cta svg {
+  fill: var(--netflix-white);
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================
+   Divider Bar
+   ========================================== */
+.divider {
+  height: 8px;
+  background-color: var(--netflix-divider);
+  border: none;
+}
+
+/* ==========================================
+   Feature Showcases (Grid Layouts)
+   ========================================== */
+.feature-section {
+  padding: 1.75rem 10%; /* Much tighter vertical spacing to eliminate empty gaping */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem; /* Tighter gap between text and media */
+  min-height: auto; /* Shrinkwrap content to eliminate vertical gaping */
+}
+
+/* Every second feature has reversed text/image */
+.feature-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-text {
+  flex: 1;
+}
+
+.feature-text h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.feature-text p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.feature-media {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Smart TV Mockup with video overlay inside transparent bezel */
+.tv-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.tv-bezel {
+  position: relative;
+  width: 100%;
+  z-index: 1; /* Render behind the overlaying video */
+  pointer-events: none;
+}
+
+.tv-bezel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tv-container .video-player {
+  position: absolute;
+  top: 20.8%;
+  left: 13.3%;
+  width: 73.5%;
+  height: 53.7%;
+  z-index: 2; /* Render on top of the television graphic screen area */
+  object-fit: cover;
+  display: block;
+}
+
+/* Smartphone Mockup with stranger things download */
+.phone-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.phone-screen-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.download-bar {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  background: var(--netflix-black);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.download-thumbnail {
+  height: 48px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.download-details {
+  flex: 1;
+  margin-left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.download-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--netflix-white);
+}
+
+.download-status {
+  font-size: 0.75rem;
+  color: #0071eb;
+  margin-top: 0.15rem;
+}
+
+.download-icon {
+  width: 32px;
+  height: 32px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230071eb"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>') no-repeat center center / contain;
+  animation: download-pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes download-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* Multi-device Mockup with video overlay */
+.device-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.device-screen {
+  position: relative;
+  width: 100%;
+  z-index: 1; /* Render behind the overlaying video */
+  pointer-events: none;
+}
+
+.device-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.device-container .video-player {
+  position: absolute;
+  top: 9.8%;
+  left: 18.7%;
+  width: 62.6%;
+  height: 47%;
+  z-index: 2; /* Render on top of the device collage screen area */
+  object-fit: cover;
+  display: block;
+}
+
+/* Kids avatar thumbnail */
+.kids-avatar-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+.kids-avatar-container img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ==========================================
+   FAQ Section
+   ========================================== */
+.faq-section {
+  padding: 2rem 10%; /* Much tighter vertical spacing to eliminate empty gaping */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.faq-section h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.faq-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.faq-item {
+  background-color: var(--netflix-card-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.faq-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition-speed);
+}
+
+.faq-header:hover {
+  background-color: var(--netflix-card-hover);
+}
+
+.faq-header h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.faq-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--netflix-white);
+  transition: transform 0.25s ease;
+}
+
+/* Accordion sliding body using CSS grid 0fr -> 1fr trick */
+.faq-body-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease-out;
+}
+
+.faq-body {
+  min-height: 0;
+  overflow: hidden;
+  border-top: 1px solid var(--netflix-black);
+}
+
+.faq-body-content {
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: var(--netflix-white);
+  font-weight: 400;
+}
+
+/* FAQ Active state classes */
+.faq-item.active .faq-body-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-section .cta-wrapper {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* ==========================================
+   Footer Section
+   ========================================== */
+footer {
+  padding: 4.5rem 10% 2.5rem;
+  color: var(--netflix-gray-text);
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer-contact {
+  margin-bottom: 0.5rem;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.footer-link {
+  font-size: 0.85rem;
+}
+
+.footer-link a:hover {
+  text-decoration: underline;
+}
+
+.footer-content .lang-selector-wrapper {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================
+   Sign In / Login Page Specific Layout
+   ========================================== */
+.login-body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
+              url('assets/hero-bg.jpg') no-repeat center center / cover;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-header {
+  padding: 1.5rem 3.5rem;
+  z-index: 10;
+}
+
+.login-header .logo svg {
+  fill: var(--netflix-red);
+  width: 167px;
+  height: auto;
+}
+
+.login-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  padding: 60px 68px 40px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+
+.login-card h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  color: var(--netflix-white);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form .input-group input {
+  height: 50px;
+  background-color: #333333;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 20px 16px 4px;
+}
+
+.login-form .input-group input:focus {
+  background-color: #454545;
+  border-color: transparent;
+  border-bottom: 2px solid var(--netflix-white);
+  box-shadow: none;
+}
+
+.login-form .input-group label {
+  left: 16px;
+}
+
+.login-form .input-group input:focus + label,
+.login-form .input-group input:not(:placeholder-shown) + label {
+  top: 14px;
+  font-size: 0.7rem;
+}
+
+.btn-login {
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  border: none;
+  height: 48px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color var(--transition-speed);
+}
+
+.btn-login:hover {
+  background-color: var(--netflix-red-hover);
+}
+
+.login-help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--netflix-gray-text);
+  margin-top: 0.5rem;
+}
+
+/* Custom Checkbox */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.remember-me input {
+  cursor: pointer;
+  accent-color: #737373;
+  width: 16px;
+  height: 16px;
+}
+
+.login-help a:hover {
+  text-decoration: underline;
+}
+
+.login-extra {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.signup-now {
+  color: var(--netflix-gray-text);
+  font-size: 1rem;
+}
+
+.signup-now a {
+  color: var(--netflix-white);
+}
+
+.signup-now a:hover {
+  text-decoration: underline;
+}
+
+.captcha-disclaimer {
+  color: #8c8c8c;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--netflix-gray-text);
+}
+
+.captcha-disclaimer a {
+  color: #0071eb;
+}
+
+.captcha-disclaimer a:hover {
+  text-decoration: underline;
+}
+
+.login-footer {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-top: 1px solid var(--netflix-divider);
+  padding: 2rem 10% 1.5rem;
+}
+
+/* ==========================================
+   Responsive Breakpoints
+   ========================================== */
+@media (max-width: 950px) {
+  .navbar {
+    padding: 1.5rem 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  
+  .feature-section {
+    flex-direction: column !important;
+    text-align: center;
+    padding: 1.5rem 1.25rem; /* Compact responsive mobile spacing */
+    gap: 2.5rem;
+  }
+  
+  .feature-text h2 {
+    font-size: 2.5rem;
+  }
+  
+  .feature-text p {
+    font-size: 1.25rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 740px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.25rem;
+  }
+  
+  .cta-form-label {
+    font-size: 1.1rem;
+  }
+  
+  .cta-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .input-group input {
+    height: 50px;
+    padding: 20px 16px 4px;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: 14px;
+    font-size: 0.7rem;
+  }
+  
+  .btn-cta {
+    width: auto;
+    height: 48px;
+    font-size: 1.125rem;
+    padding: 0 1.5rem;
+  }
+  
+  .faq-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .faq-header h3 {
+    font-size: 1.15rem;
+  }
+  
+  .faq-body-content {
+    font-size: 1.15rem;
+  }
+  
+  .login-card {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    padding: 1rem 1.25rem;
+  }
+  
+  .logo svg {
+    width: 95px;
+  }
+  
+  .btn-signin {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .hero {
+    min-height: 580px;
+    padding: 0 1.25rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.1rem;
+  }
+  
+  .cta-form-label {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  
+  .btn-cta {
+    width: 100%;
+  }
+  
+  .feature-section {
+    padding: 3rem 1.25rem;
+  }
+  
+  .feature-text h2 {
+    font-size: 2rem;
+  }
+  
+  .feature-text p {
+    font-size: 1.1rem;
+  }
+  
+  .faq-section {
+    padding: 3rem 1.25rem;
+  }
+  
+  .faq-section h2 {
+    font-size: 2rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .login-header {
+    padding: 1.5rem 1.5rem;
+  }
+  
+  .login-header .logo svg {
+    width: 100px;
+  }
+  
+  .login-card {
+    background-color: var(--netflix-black);
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================
+   Curved Section Divider
+   ========================================== */
+.curve-divider-container {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  margin-top: -32px; /* Pull it up to overlay the bottom of the hero collage background */
+  z-index: 5;
+  overflow: hidden;
+  background: transparent;
+}
+
+.curve-divider-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================
+   Trending Now Section
+   ========================================== */
+.trending-section {
+  padding: 3rem 3.5rem 1.5rem; /* Tightened bottom padding since divider is gone */
+  background-color: var(--netflix-black);
+  position: relative;
+  overflow: hidden;
+}
+
+.trending-title {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--netflix-white);
+  margin-bottom: 1.5rem;
+}
+
+.trending-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.trending-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 1.5rem; /* Symmetrical 1.5rem padding */
+  scroll-padding-left: 1.5rem; /* Snap cards to the 1.5rem boundary */
+  width: 100%;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.trending-track::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.trending-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex: 0 0 calc(20% - 1.8rem); /* Mathematically fits exactly 5 cards visible, hiding card 6 at screen edge */
+  min-width: 200px;
+  height: 300px; /* Make the images look bigger */
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+.trending-card:hover {
+  transform: scale(1.08) translateY(-5px);
+  z-index: 5;
+}
+
+.trending-rank {
+  position: relative; /* Relative positioning so the card container bounds wrap it */
+  font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Wide geometric font matching Netflix Sans */
+  font-size: 4rem; /* Exact Netflix mobile font size */
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
+  height: 1em;
+  color: rgb(65, 65, 65); /* Charcoal base under the white stroke */
+  -webkit-text-stroke: 0.25rem rgb(255, 255, 255); /* Thick 4px white outline */
+  text-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.5); /* Glow shadow for depth */
+  margin-right: -1.375rem; /* Pull next poster sibling over the right side of the rank */
+  bottom: 0.1rem;
+  z-index: 3; /* Placed ON TOP of the poster wrapper (overlay) */
+  user-select: none;
+  pointer-events: none; /* Ensure clicks pass through to the poster */
+  transition: transform 0.2s ease-in-out;
+}
+
+.trending-rank::before {
+  content: attr(data-content);
+  -webkit-text-fill-color: rgb(0, 0, 0); /* Solid black fill layered on top */
+  -webkit-text-stroke: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@media (min-width: 960px) {
+  .trending-rank {
+    font-size: 5rem; /* Exact Netflix medium layout font size */
+    bottom: 0rem;
+    margin-right: -1.875rem; /* Adjusted negative margin for larger font */
+  }
+}
+
+@media (min-width: 1280px) {
+  .trending-rank {
+    font-size: 6.25rem; /* Exact Netflix desktop layout font size */
+    margin-right: -2.375rem; /* Adjusted negative margin for desktop font */
+  }
+}
+
+.trending-poster-wrapper {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 2; /* Sits behind the overlapping rank outline */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.trending-poster-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.trending-carousel-container:hover .carousel-btn {
+  opacity: 1;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--netflix-white);
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .trending-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .trending-card {
+    width: 160px;
+    height: 190px;
+  }
+  
+  .trending-rank {
+    font-size: 6.5rem;
+    margin-right: -18px;
+    margin-bottom: -8px;
+  }
+  
+  .trending-poster-wrapper {
+    width: 105px;
+    height: 160px;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
